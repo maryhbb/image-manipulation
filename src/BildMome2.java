@@ -2,7 +2,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.text.Normalizer;
 
 public class BildMome2 {
 
@@ -21,11 +20,9 @@ public class BildMome2 {
         try {
             ImageIO.write(img, "tif", new File(fileName));
             System.out.println("New Img Created");
-
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
 
     void changeBrightness(double factor) throws Exception {
@@ -34,24 +31,16 @@ public class BildMome2 {
         }
 
         for (int x = 0; x < img.getWidth(); x++) {
-
             for (int y = 0; y < img.getHeight(); y++) {
-
-
                 int pixValue = img.getRGB(x, y);
                 Color color = new Color(pixValue);
-
                 int r = color.getRed();
                 int g = color.getGreen();
                 int b = color.getBlue();
-
                 Color updatedColor = new Color(normalise(r * factor), normalise(g * factor), normalise(b * factor));
-
                 img.setRGB(x, y, updatedColor.getRGB());
             }
-
         }
-
     }
 
     private int normalise(int value) {
@@ -61,7 +50,6 @@ public class BildMome2 {
     private int normalise(double value) {
         return (int) Math.max(Math.min(value, 255), 0);
     }
-
 
     void changeChannel(ColorChannel channel, int value) {
 
@@ -102,6 +90,4 @@ public class BildMome2 {
 
         }
     }
-
-
 }
